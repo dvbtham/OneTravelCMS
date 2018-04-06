@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FunctionWithRole>
+<li><hr style="border-top: #2a3e4c"/></li>
+<li class="navigation-header">
+    <span>TÍNH NĂNG</span>
+    <i class="zmdi zmdi-more"></i>
+</li>
+@foreach (var f1 in Model)
+{
+    if (f1.ChildItems.Count > 0)
+    {
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#function_toggle_@f1.Id">
+                <div class="pull-left"><i class="zmdi zmdi-apps mr-10"></i><span class="right-nav-text">@f1.Name</span>
+                </div>
+                <div class="pull-right"><span class="fa fa-caret-down"></span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="clearfix"></div>
+            </a>
+            <ul id="function_toggle_@f1.Id" class="collapse collapse-level-1">
+               @foreach (var f2 in f1.ChildItems)
+               {
+                   <li>
+                       <a href="@f2.Url">@f2.Name</a>
+                   </li>
+               }
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@f1.Url"><i class="zmdi zmdi-apps mr-20"></i>@f1.Name</a>
+        </li>
+    }
+}
+

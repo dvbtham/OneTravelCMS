@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneTravelCMS", "OneTravelCMS\OneTravelCMS.csproj", "{D28B9C4B-3804-45B2-8B72-B08FD3D74132}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneTravelApi", "OneTravelApi\OneTravelApi.csproj", "{24B02CD0-EFF3-45BA-96BC-D40DE09A8F56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D28B9C4B-3804-45B2-8B72-B08FD3D74132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28B9C4B-3804-45B2-8B72-B08FD3D74132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28B9C4B-3804-45B2-8B72-B08FD3D74132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28B9C4B-3804-45B2-8B72-B08FD3D74132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B02CD0-EFF3-45BA-96BC-D40DE09A8F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B02CD0-EFF3-45BA-96BC-D40DE09A8F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B02CD0-EFF3-45BA-96BC-D40DE09A8F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B02CD0-EFF3-45BA-96BC-D40DE09A8F56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB0B2056-3421-4860-9DCA-DBAA1268F8CE}
+	EndGlobalSection
+EndGlobal

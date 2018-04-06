@@ -1,0 +1,43 @@
+﻿
+@model IList<MyRole>
+
+@foreach (var role in Model)
+{
+    <li class="dropdown">
+        <!-- Single button -->
+        <button class="btn btn-primary dropdown-toggle" style="margin-top: 14px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @role.Name
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            @foreach (var area in role.MyAreas)
+            {
+                <li>
+                    <a class="populate-menu"
+                       data-area="@area.Id"
+                       data-role="@role.Id"
+                       href="javascript:void(0)">@area.Name</a>
+                </li>
+            }
+        </ul>
+    </li>
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(".populate-menu").on("click",
+        function (e) {
+            const li = $(e.target);
+
+            $.ajax({
+                url: `/Home/PopulateTopNavbarData?roleId=${li.data("role")}&areaId=${li.data("area")}`,
+                type: "get",
+                success: function (data) {
+                    $("#result").html(data);
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+</script>
