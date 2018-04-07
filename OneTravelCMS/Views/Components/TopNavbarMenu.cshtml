@@ -5,14 +5,14 @@
 {
     <li class="dropdown">
         <!-- Single button -->
-        <button class="btn btn-primary dropdown-toggle" style="margin-top: 14px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-primary dropdown-toggle menu-btn" style="margin-top: 14px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             @role.Name
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
             @foreach (var area in role.MyAreas)
             {
-                <li>
+                <li class="li-area">
                     <a class="populate-menu"
                        data-area="@area.Id"
                        data-role="@role.Id"
@@ -26,14 +26,32 @@
 <script>
     $(".populate-menu").on("click",
         function (e) {
-            const li = $(e.target);
+            const link = $(e.target);
 
             $.ajax({
-                url: `/Home/PopulateTopNavbarData?roleId=${li.data("role")}&areaId=${li.data("area")}`,
+                url: `/Home/PopulateTopNavbarData?roleId=${link.data("role")}&areaId=${link.data("area")}`,
                 type: "get",
                 success: function (data) {
+                    const li = link.parent().addClass("active");
+                    const liParent = li.parent().parent();
+                    const button = liParent.find("button");
+                    button.addClass("btn-success");
+
+                    $.each($(".li-area"),
+                        function (i, el) {
+                            if (!link.parent().is(el)) {
+                                el.classList.remove("active");
+                            }
+                        });
+
+                    $.each($(".menu-btn"),
+                        function (i, el) {
+                            if (!button.is(el)) {
+                                el.classList.remove("btn-success");
+                            }
+                        });
+
                     $("#result").html(data);
-                    console.log(data);
                 },
                 error: function (data) {
                     console.log(data);
