@@ -6,6 +6,11 @@
 </li>
 @foreach (var f1 in Model)
 {
+    if (f1.Name == "Hệ thống")
+    {
+        continue;
+    }
+
     if (f1.ChildItems.Count > 0)
     {
         <li>
@@ -21,7 +26,7 @@
                @foreach (var f2 in f1.ChildItems)
                {
                    <li>
-                       <a href="@f2.Url">@f2.Name</a>
+                       <a target="_blank" href="@f2.Url">@f2.Name</a>
                    </li>
                }
             </ul>

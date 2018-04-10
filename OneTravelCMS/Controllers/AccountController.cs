@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +6,11 @@ using OneTravelCMS.Core;
 using OneTravelCMS.Core.Extensions.HttpClient;
 using OneTravelCMS.Core.Responses;
 using OneTravelCMS.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace OneTravelCMS.Controllers
 {
@@ -29,7 +29,7 @@ namespace OneTravelCMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            var response = await HttpRequestFactory.Post(Constants.BaseApiUrl + "user/login?isAdminLogin=true", model);
+            var response = await HttpRequestFactory.Post(Constants.BaseAdminApiUrl + "user/login?isAdminLogin=true", model);
             var outputModel = response.ContentAsType<SingleModelResponse<ResponseResult>>();
 
             if (!response.IsSuccessStatusCode)
@@ -38,7 +38,7 @@ namespace OneTravelCMS.Controllers
                 return View(model);
             }
 
-            var userResponse = await HttpRequestFactory.Get(Constants.BaseApiUrl + "user/email/" + model.Email);
+            var userResponse = await HttpRequestFactory.Get(Constants.BaseAdminApiUrl + "user/email/" + model.Email);
 
             if (!userResponse.IsSuccessStatusCode)
             {
@@ -54,6 +54,7 @@ namespace OneTravelCMS.Controllers
                 new Claim(ClaimTypes.Name, user.Email),
                 new Claim("Identifer", user.UserIdentifier)
             };
+
             claims.AddRange(user.RoleCodes.Select(userRole => new Claim(ClaimTypes.Role, userRole)));
             var userIdentity = new ClaimsIdentity(claims, "OneTravel");
             var userPrincipal = new ClaimsPrincipal(userIdentity);
@@ -67,7 +68,12 @@ namespace OneTravelCMS.Controllers
                     AllowRefresh = true
                 });
 
-            return GoToReturnUrl(returnUrl);
+            var addUserResponse = await HttpRequestFactory.Post(Constants.BaseApiUrl + "user/"+ model.Email, user);
+
+            if (addUserResponse.IsSuccessStatusCode) return GoToReturnUrl(returnUrl);
+
+            ModelState.AddModelError("loginStatus", "Quá trình đăng nhập xảy ra lỗi.");
+            return View(model);
         }
 
         public async Task<IActionResult> Logout()

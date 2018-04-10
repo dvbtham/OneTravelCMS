@@ -1,0 +1,10 @@
+﻿@using OneTravelCMS.Core
+<div class="fixed-sidebar-left">
+    <ul class="nav navbar-nav side-nav nicescroll-bar">
+        <li class="navigation-header">
+            <span>DANH MỤC</span>
+            <i class="zmdi zmdi-more"></i>
+        </li>
+        @await Component.InvokeAsync("LeftNavbar", new { areaCode = Constants.OneOperatorArea })
+    </ul>
+</div>

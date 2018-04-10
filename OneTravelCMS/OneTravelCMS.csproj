@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,10 +16,13 @@
   <ItemGroup>
     <Folder Include="Areas\OneOperator\Data\" />
     <Folder Include="Areas\OneOperator\Models\" />
-    <Folder Include="Areas\OneOperator\Views\" />
     <Folder Include="Areas\OneReport\Data\" />
     <Folder Include="Areas\OneReport\Models\" />
     <Folder Include="Areas\OneReport\Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OneTravelApi\OneTravelApi.csproj" />
   </ItemGroup>
 
 </Project>

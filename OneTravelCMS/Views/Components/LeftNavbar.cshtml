@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FunctionWithRole>
+    
+@foreach (var parent in Model)
+{
+    if (parent.Name == "Hệ thống")
+    {
+        continue;
+    }
+    if (parent.ChildItems.Count > 0)
+    {
+        <li>
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr_@parent.Id">
+                <div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span class="right-nav-text">@parent.Name</span>
+                </div>
+                <div class="pull-right"><i class="zmdi zmdi-caret-down mr-20"></i>
+                </div>
+                <div class="clearfix"></div>
+            </a>
+            <ul id="ui_dr_@parent.Id" class="collapse collapse-level-1">
+                @foreach (var c in parent.ChildItems)
+                {
+                    <li>
+                        <a href="@c.Url">@c.Name</a>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@parent.Url"><i class="zmdi zmdi-home mr-20"></i>@parent.Name</a>
+        </li>
+    }
+}
