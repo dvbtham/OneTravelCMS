@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OneTravelApi.EntityLayer;
+using OneTravelApi.Resources;
 using OneTravelApi.Services;
 using System.Threading.Tasks;
 
 namespace OneTravelApi.Controllers
 {
-    public class CategoryBookingStatusController : BaseController
+    public class CategoryGroupPartnerController : BaseController
     {
-        private readonly ICategoryBookingStatusService _service;
+        private readonly ICategoryGroupPartnerService _service;
 
-        public CategoryBookingStatusController(ICategoryBookingStatusService service)
+        public CategoryGroupPartnerController(ICategoryGroupPartnerService service)
         {
             _service = service;
         }
@@ -27,13 +27,13 @@ namespace OneTravelApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody]CategoryBookingStatus resource)
+        public async Task<IActionResult> Update(int id, [FromBody]CategoryGroupPartnerResource resource)
         {
             return await _service.Update(id, resource);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]CategoryBookingStatus resource)
+        public async Task<IActionResult> Create([FromBody]CategoryGroupPartnerResource resource)
         {
             return await _service.Create(resource);
         }

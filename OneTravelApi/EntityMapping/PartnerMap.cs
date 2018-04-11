@@ -38,8 +38,8 @@ namespace OneTravelApi.EntityMapping
 
                 // Relationships
 
-                entity.HasOne(x => x.GroupPartner).WithMany(x => x.Partners);
-                entity.HasOne(x => x.User).WithMany(x => x.Partners);
+                entity.HasOne(x => x.GroupPartner).WithMany(x => x.Partners).HasForeignKey(x => x.IdGroupPartner);
+                entity.HasOne(x => x.User).WithMany(x => x.Partners).HasForeignKey(x => x.UpdateByUser);
 
             });
         }

@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace OneTravelApi.Controllers
 {
-    public class CategoryBookingStatusController : BaseController
+    public class CategoryLocalTravelController : BaseController
     {
-        private readonly ICategoryBookingStatusService _service;
+        private readonly ICategoryLocalTravelService _service;
 
-        public CategoryBookingStatusController(ICategoryBookingStatusService service)
+        public CategoryLocalTravelController(ICategoryLocalTravelService service)
         {
             _service = service;
         }
@@ -27,13 +27,13 @@ namespace OneTravelApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody]CategoryBookingStatus resource)
+        public async Task<IActionResult> Update(int id, [FromBody]CategoryLocalTravel resource)
         {
             return await _service.Update(id, resource);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]CategoryBookingStatus resource)
+        public async Task<IActionResult> Create([FromBody]CategoryLocalTravel resource)
         {
             return await _service.Create(resource);
         }

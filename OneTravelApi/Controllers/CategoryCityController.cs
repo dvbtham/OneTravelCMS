@@ -20,6 +20,12 @@ namespace OneTravelApi.Controllers
             return _service.GetAll(pageSize, pageNumber, q);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return await _service.GetAsync(id);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody]CategoryCityResource resource)
         {

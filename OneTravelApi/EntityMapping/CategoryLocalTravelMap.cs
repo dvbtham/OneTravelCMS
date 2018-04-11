@@ -26,7 +26,7 @@ namespace OneTravelApi.EntityMapping
                 entity.Property(e => e.IsActive)
                     .IsRequired();
 
-                entity.HasOne(x => x.City).WithMany(x => x.LocalTravels);
+                entity.HasOne(x => x.City).WithMany(x => x.LocalTravels).HasForeignKey(x => x.IdCity);
 
             });
         }

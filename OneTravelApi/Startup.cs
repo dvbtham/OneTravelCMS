@@ -1,5 +1,4 @@
-﻿using System.IO;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +9,7 @@ using Newtonsoft.Json.Serialization;
 using OneTravelApi.DataLayer;
 using OneTravelApi.Services;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace OneTravelApi
 {
@@ -55,10 +55,18 @@ namespace OneTravelApi
             services.AddScoped<IEntityMapper, OneTravelEntityMapper>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddEntityFrameworkSqlServer().AddDbContext<OneTravelDbContext>();
+
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICategoryBookingService, CategoryBookingService>();
             services.AddScoped<ICategoryBookingStatusService, CategoryBookingStatusService>();
             services.AddScoped<ICategoryCityService, CategoryCityService>();
+            services.AddScoped<ICategoryGroupPartnerService, CategoryGroupPartnerService>();
+            services.AddScoped<ICategoryLocalTravelService, CategoryLocalTravelService>();
+            services.AddScoped<ICategoryPriorityService, CategoryPriorityService>();
+            services.AddScoped<ICategoryRequestService, CategoryRequestService>();
+            services.AddScoped<ICategoryRequestStatusService, CategoryRequestStatusService>();
+            services.AddScoped<IPartnerService, PartnerService>();
+            services.AddScoped<IPartnerContactService, PartnerContactService>();
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddSingleton(Configuration);
