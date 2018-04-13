@@ -1,11 +1,9 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using OneTravelCMS.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 using OneTravelCMS.Core;
 using OneTravelCMS.Core.Extensions.HttpClient;
-using OneTravelCMS.Core.Responses;
 using OneTravelCMS.Models;
+using System.Threading.Tasks;
+using OneTravelApi.Responses;
 
 namespace OneTravelCMS.Components
 {

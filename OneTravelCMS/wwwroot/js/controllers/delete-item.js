@@ -1,5 +1,5 @@
 ﻿
-$("#oneDataTable").on("click", ".delete-userConf",
+$("#oneDataTable").on("click", ".delete-item",
     function (e) {
         const link = $(e.target);
         swal({
@@ -14,7 +14,7 @@ $("#oneDataTable").on("click", ".delete-userConf",
         }, function () {
 
             $.ajax({
-                url: `/systemadmin/UserConfig/Delete/${link.attr("data-id")}`,
+                url: `/OneOperator/${link.attr("data-controller")}/Delete/${link.attr("data-id")}`,
                 method: "delete",
                 success: function () {
                     link.parents("tr").fadeOut(function () {

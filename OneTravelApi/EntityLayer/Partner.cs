@@ -31,6 +31,6 @@ namespace OneTravelApi.EntityLayer
 
         public bool IsActive { get; set; }
 
-        public IEnumerable<PartnerContact> PartnerContacts { get; set; } = new HashSet<PartnerContact>();
+        public IEnumerable<PartnerContact> PartnerContacts { get; set; } = new List<PartnerContact>();
     }
 }

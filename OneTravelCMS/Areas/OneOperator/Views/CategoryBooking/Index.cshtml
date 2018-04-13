@@ -1,0 +1,89 @@
+﻿@model OneTravelApi.Responses.ListModelResponse<OneTravelApi.EntityLayer.CategoryBooking>
+@{
+    ViewData["Title"] = "Nhóm booking";
+}
+
+@section PageTitle
+    {
+    <!-- Title -->
+    <div class="row heading-bg">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h5 class="txt-dark">@ViewData["Title"]</h5>
+        </div>
+        <!-- Breadcrumb -->
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li><a href="#"><span>@ViewData["Title"]</span></a></li>
+                <li class="active"><span>Danh sách</span></li>
+            </ol>
+        </div>
+        <!-- /Breadcrumb -->
+    </div>
+    <!-- /Title -->
+
+}
+
+<!-- Row -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    <h6 class="panel-title txt-dark">Danh sách</h6>
+                </div>
+                <div class="pull-right">
+                    <a asp-area="OneOperator" asp-action="Create" asp-controller="CategoryBooking" class="btn btn-sm btn-success">Thêm mới</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="table-wrap">
+                        <div class="table-responsive">
+                            <table id="oneDataTable" class="table table-hover display  pb-30">
+                                <thead>
+                                    <tr>
+                                        <th>Tên nhóm</th>
+                                        <th>Thứ tự</th>
+                                        <th>Kích hoạt</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Model)
+                                    {
+                                        <tr>
+                                            <td>@item.BookingName</td>
+                                            <td>@item.Position</td>
+                                            <td>
+                                                <one-checkbox is-checked="@item.IsActive"></one-checkbox>
+                                            </td>
+                                            <td>
+                                                <tbl-actions tag-id="@item.Id"
+                                                             tag-name="@item.BookingName"
+                                                             delete-controller="CategoryBooking"
+                                                             edit-label="Sửa"
+                                                             del-label="Xoá"
+                                                             url="@Url.Action("Edit","CategoryBooking", new { id = item.Id })"
+                                                             del-class-name="delete-item">
+                                                </tbl-actions>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Row -->
+
+@section scripts
+{
+    <script src="~/js/controllers/delete-item.js"></script>
+}

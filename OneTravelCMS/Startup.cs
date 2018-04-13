@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,13 +31,8 @@ namespace OneTravelCMS
                         options.ReturnUrlParameter = "returnUrl";
                     });
 
-            //services.AddOptions();
-            //services.AddScoped<IEntityMapper, OneTravelEntityMapper>();
-            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
-            //services.AddEntityFrameworkSqlServer().AddDbContext<OneTravelDbContext>();
-
-            //services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddAutoMapper();
+            
             services.AddSingleton(Configuration);
         }
 

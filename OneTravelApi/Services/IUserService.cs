@@ -14,6 +14,7 @@ namespace OneTravelApi.Services
     {
         Task<bool> UserLoggedIn(string email, UserResultListResource user);
         Task<bool> UpdateAsync(string email, SaveUserResource user);
+        Task<User> Get(string email);
     }
     public class UserService : IUserService
     {
@@ -84,5 +85,9 @@ namespace OneTravelApi.Services
             }
         }
 
+        public async Task<User> Get(string email)
+        {
+            return await _userRepository.FindAsync(x => x.UserEmail == email);
+        }
     }
 }

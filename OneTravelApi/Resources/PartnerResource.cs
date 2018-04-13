@@ -1,5 +1,6 @@
 ﻿using OneTravelApi.EntityLayer;
 using System;
+using System.Collections.Generic;
 
 namespace OneTravelApi.Resources
 {
@@ -30,5 +31,7 @@ namespace OneTravelApi.Resources
         public User User { get; set; }
 
         public bool IsActive { get; set; }
+
+        public IEnumerable<PartnerContact> PartnerContacts { get; set; } = new List<PartnerContact>();
     }
 }

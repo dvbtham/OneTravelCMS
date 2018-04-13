@@ -20,7 +20,9 @@ namespace OneTravelApi.Mapping
             CreateMap<CategoryPriority, CategoryPriority>();
 
             CreateMap<Partner, PartnerResource>();
-            CreateMap<PartnerResource, Partner>().ForMember(x => x.Id, opt => opt.Ignore());
+            CreateMap<PartnerResource, Partner>()
+                .ForMember(x => x.Id, opt => opt.Ignore())
+                .ForMember(x => x.PartnerContacts, opt => opt.Ignore());
 
             CreateMap<PartnerContact, PartnerContactResource > ();
             CreateMap<PartnerContactResource, PartnerContact>().ForMember(x => x.Id, opt => opt.Ignore());

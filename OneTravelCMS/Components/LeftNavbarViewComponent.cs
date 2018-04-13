@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OneTravelCMS.Core;
 using OneTravelCMS.Core.Extensions.HttpClient;
-using OneTravelCMS.Core.Responses;
 using OneTravelCMS.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using OneTravelApi.Responses;
 
 namespace OneTravelCMS.Components
 {

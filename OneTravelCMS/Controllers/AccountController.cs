@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OneTravelCMS.Core;
 using OneTravelCMS.Core.Extensions.HttpClient;
-using OneTravelCMS.Core.Responses;
 using OneTravelCMS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using OneTravelApi.Responses;
 
 namespace OneTravelCMS.Controllers
 {

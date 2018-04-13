@@ -19,12 +19,15 @@ namespace OneTravelApi.Services
     public class PartnerService : IPartnerService
     {
         private readonly IRepository<Partner> _repository;
+        private readonly IRepository<PartnerContact> _partnerContactRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<PartnerService> _logger;
 
-        public PartnerService(IRepository<Partner> repository, IMapper mapper, ILogger<PartnerService> logger)
+        public PartnerService(IRepository<Partner> repository, IRepository<PartnerContact> partnerContactRepository,
+            IMapper mapper, ILogger<PartnerService> logger)
         {
             _repository = repository;
+            _partnerContactRepository = partnerContactRepository;
             _mapper = mapper;
             _logger = logger;
         }
@@ -37,7 +40,10 @@ namespace OneTravelApi.Services
                 PageSize = (int)pageSize,
                 PageNumber = (int)pageNumber
             };
-            var query = _repository.Query().Skip((response.PageNumber - 1) * response.PageSize)
+            var query = _repository.Query()
+                .Include(x => x.GroupPartner)
+                .Include(x => x.PartnerContacts)
+                .Skip((response.PageNumber - 1) * response.PageSize)
                 .Take(response.PageSize).ToList();
 
             if (!string.IsNullOrEmpty(q) && query.Any())
@@ -70,7 +76,10 @@ namespace OneTravelApi.Services
 
             try
             {
-                var entity = await _repository.Query().FirstOrDefaultAsync(x => x.Id == id);
+                var entity = await _repository.Query()
+                    .Include(x => x.GroupPartner)
+                    .Include(x => x.PartnerContacts)
+                    .FirstOrDefaultAsync(x => x.Id == id);
 
                 if (entity == null)
                 {
@@ -167,6 +176,19 @@ namespace OneTravelApi.Services
 
             try
             {
+                var partner = _repository.Query()
+                    .Include(x => x.PartnerContacts)
+                    .FirstOrDefault(x => x.Id == id);
+
+                if (partner == null)
+                {
+                    response.DidError = true;
+                    response.ErrorMessage = ResponseMessageConstants.NotFound;
+                    return response.ToHttpResponse();
+                }
+
+                await _partnerContactRepository.DeleteRangeAsync(partner.PartnerContacts.ToList());
+
                 var entity = await _repository.DeleteAsync(id);
 
                 response.Model = entity;

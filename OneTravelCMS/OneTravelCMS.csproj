@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\OneOperator\Data\" />
-    <Folder Include="Areas\OneOperator\Models\" />
     <Folder Include="Areas\OneReport\Data\" />
     <Folder Include="Areas\OneReport\Models\" />
     <Folder Include="Areas\OneReport\Views\" />

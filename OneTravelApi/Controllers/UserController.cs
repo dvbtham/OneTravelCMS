@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OneTravelApi.EntityLayer;
 using OneTravelApi.Models;
+using OneTravelApi.Responses;
 using OneTravelApi.Services;
 
 namespace OneTravelApi.Controllers
@@ -30,6 +32,16 @@ namespace OneTravelApi.Controllers
                 return BadRequest("Đã xảy ra lỗi.");
 
             return Ok("Bạn đã cập nhật người dùng thành công.");
+        }
+
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUser(string email)
+        {
+            var response = new SingleModelResponse<User>
+            {
+                Model = await _userService.Get(email)
+            };
+            return response.ToHttpResponse();
         }
     }
 }

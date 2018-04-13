@@ -13,7 +13,7 @@ namespace OneTravelApi.Services
 {
     public interface ICategoryLocalTravelService : IBaseService<CategoryLocalTravel>
     {
-        
+
     }
 
     public class CategoryLocalTravelService : ICategoryLocalTravelService
@@ -37,7 +37,7 @@ namespace OneTravelApi.Services
                 PageSize = (int)pageSize,
                 PageNumber = (int)pageNumber
             };
-            var query = _repository.Query().Skip((response.PageNumber - 1) * response.PageSize)
+            var query = _repository.Query().Include(x => x.City).Skip((response.PageNumber - 1) * response.PageSize)
                 .Take(response.PageSize).ToList();
 
             if (!string.IsNullOrEmpty(q) && query.Any())
@@ -70,7 +70,7 @@ namespace OneTravelApi.Services
 
             try
             {
-                var entity = await _repository.Query().FirstOrDefaultAsync(x => x.Id == id);
+                var entity = await _repository.Query().Include(x => x.City).FirstOrDefaultAsync(x => x.Id == id);
 
                 if (entity == null)
                 {

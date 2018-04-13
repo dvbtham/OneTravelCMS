@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using OneTravelCMS.Core;
 using OneTravelCMS.Core.Extensions.HttpClient;
-using OneTravelCMS.Core.Responses;
 using OneTravelCMS.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using OneTravelApi.Responses;
 
 namespace OneTravelCMS.Controllers
 {
