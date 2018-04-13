@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OneTravelApi.EntityLayer;
 using OneTravelApi.Responses;
@@ -8,6 +9,7 @@ using OneTravelCMS.Core.Extensions.HttpClient;
 namespace OneTravelCMS.Areas.OneOperator.Controllers
 {
     [Area("OneOperator")]
+    [Authorize]
     public class BaseOneOperatorController : Controller
     {
         protected void AlertShow()

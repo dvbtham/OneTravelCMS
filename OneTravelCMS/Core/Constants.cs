@@ -12,6 +12,7 @@
 
         public const string SaveContinute = "save-continute";
         public const string Save = "save";
+        public const string SaveAndCreate = "save-create";
         public const string StringLengthMaxMessage = "{0} chỉ nhập tối đa {1} ký tự.";
         public const string RequiredMessage = "Vui lòng nhập {0}.";
 

@@ -96,53 +96,56 @@
                             </div>
                         </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="table-responsive">
-                                    Nhân viên liên hệ <a href="javascript:void(0)" 
-                                                         data-partner="@Model.Id"
-                                                         class="ml-20 btn btn-success btn-sm add-partner-contact">Thêm liên hệ</a>
+                        @if (Model.PartnerContacts.Any())
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="table-responsive">
+                                        Nhân viên liên hệ <a href="javascript:void(0)"
+                                                             data-partner="@Model.Id"
+                                                             class="ml-20 btn btn-success btn-sm add-partner-contact">Thêm liên hệ</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table id="example" class="table table-striped" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Họ tên</th>
-                                                <th>Vị trí</th>
-                                                <th>Điện thoại</th>
-                                                <th>Email</th>
-                                                <th>Thao tác</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="partnerContactBody">
-                                            @foreach (var item in Model.PartnerContacts)
-                                            {
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="example" class="table table-striped" style="width:100%">
+                                            <thead>
                                                 <tr>
-                                                    <td class="contactName_@item.Id">@item.ContactName</td>
-                                                    <td class="positionTitle_@item.Id">@item.PositionTitle</td>
-                                                    <td class="mobile_@item.Id"><a href="tel:@item.Mobile">@item.Mobile</a></td>
-                                                    <td class="email_@item.Id"><a href="mailto:@item.Email">@item.Email</a></td>
-                                                    <td>
-                                                        <a class="table-edit" href="javascript:void(0)"
-                                                           data-partner="@item.IdPartner"
-                                                           data-id="@item.Id">
-                                                            <i class="fa fa-edit text-success"></i> Sửa
-                                                        </a>
-                                                        | <a class="table-delete" data-controller="PartnerContact"
-                                                             href="javascript:void(0)"
-                                                             data-id="@item.Id">
-                                                            <i class="fa fa-trash text-danger"></i> Xóa
-                                                        </a>
-                                                    </td>
+                                                    <th>Họ tên</th>
+                                                    <th>Vị trí</th>
+                                                    <th>Điện thoại</th>
+                                                    <th>Email</th>
+                                                    <th>Thao tác</th>
                                                 </tr>
-                                            }
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody id="partnerContactBody">
+                                                @foreach (var item in Model.PartnerContacts)
+                                                {
+                                                    <tr>
+                                                        <td class="contactName_@item.Id">@item.ContactName</td>
+                                                        <td class="positionTitle_@item.Id">@item.PositionTitle</td>
+                                                        <td class="mobile_@item.Id"><a href="tel:@item.Mobile">@item.Mobile</a></td>
+                                                        <td class="email_@item.Id"><a href="mailto:@item.Email">@item.Email</a></td>
+                                                        <td>
+                                                            <a class="table-edit" href="javascript:void(0)"
+                                                               data-partner="@item.IdPartner"
+                                                               data-id="@item.Id">
+                                                                <i class="fa fa-edit text-success"></i> Sửa
+                                                            </a>
+                                                            | <a class="table-delete" data-controller="PartnerContact"
+                                                                 href="javascript:void(0)"
+                                                                 data-id="@item.Id">
+                                                                <i class="fa fa-trash text-danger"></i> Xóa
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
 
                         <div class="form-group mb-0">
                             <button type="submit" name="saveCommand" value="@Constants.SaveContinute" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Tiếp tục</span></button>

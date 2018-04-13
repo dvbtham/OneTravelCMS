@@ -23,6 +23,15 @@ namespace OneTravelCMS.Core.Mapping
 
             CreateMap<PartnerResource, PartnerViewModel>();
             CreateMap<PartnerViewModel, PartnerResource>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<CategoryPriority, CategoryPriorityViewModel>();
+            CreateMap<CategoryPriorityViewModel, CategoryPriority>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<CategoryRequest, CategoryRequestViewModel>();
+            CreateMap<CategoryRequestViewModel, CategoryRequest>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<CategoryRequestStatus, CategoryRequestStatusViewModel>();
+            CreateMap<CategoryRequestStatusViewModel, CategoryRequestStatus>().ForMember(x => x.Id, opt => opt.Ignore());
         }
     }
 }
