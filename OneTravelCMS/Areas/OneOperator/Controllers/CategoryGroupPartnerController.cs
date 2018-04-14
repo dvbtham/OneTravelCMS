@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OneTravelApi.EntityLayer;
 using OneTravelApi.Resources;
 using OneTravelApi.Responses;
 using OneTravelCMS.Areas.OneOperator.Models;
@@ -61,7 +60,7 @@ namespace OneTravelCMS.Areas.OneOperator.Controllers
         {
             var outputModel = await GetSingle(id);
 
-            var model = new CategoryGroupPartnerResource();
+            var model = new CategoryGroupPartnerViewModel();
             _mapper.Map(outputModel.Model, model);
 
             return View("CategoryGroupPartnerForm", model);
