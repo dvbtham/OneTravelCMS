@@ -18,6 +18,9 @@ namespace OneTravelCMS.Core.Mapping
             CreateMap<CategoryCity, CategoryCityViewModel>();
             CreateMap<CategoryCityViewModel, CategoryCity>().ForMember(x => x.Id, opt => opt.Ignore());
 
+            CreateMap<CategoryLocalTravel, CategoryLocalTravelViewModel>();
+            CreateMap<CategoryLocalTravelViewModel, CategoryLocalTravel>().ForMember(x => x.Id, opt => opt.Ignore());
+
             CreateMap<CategoryGroupPartnerResource, CategoryGroupPartnerViewModel>();
             CreateMap<CategoryGroupPartnerViewModel, CategoryGroupPartnerResource>().ForMember(x => x.Id, opt => opt.Ignore());
 

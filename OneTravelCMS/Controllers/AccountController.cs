@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OneTravelApi.Responses;
 using OneTravelCMS.Core;
 using OneTravelCMS.Core.Extensions.HttpClient;
 using OneTravelCMS.Models;
@@ -10,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using OneTravelApi.Responses;
 
 namespace OneTravelCMS.Controllers
 {

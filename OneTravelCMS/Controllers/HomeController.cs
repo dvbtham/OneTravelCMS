@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OneTravelCMS.Core;
 using OneTravelCMS.Core.Extensions.HttpClient;
@@ -25,21 +25,39 @@ namespace OneTravelCMS.Controllers
             var email = User.Identity.Name;
             var response = await HttpRequestFactory.Get(Constants.BaseAdminApiUrl + "user/areas/" + email);
             var outputModel = response.ContentAsType<SingleModelResponse<UserEx>>();
+
+            if (roleCode.Contains("$"))
+            {
+                var roleCodes = roleCode.Split("$");
+                var mRoles = new List<MyRole>();
+                var myFunctions = new List<FunctionWithRole>();
+
+                foreach (var rc in roleCodes)
+                {
+                    if (!string.IsNullOrEmpty(rc))
+                    {
+                        mRoles.Add(outputModel.Model.MyRoles.FirstOrDefault(x => x.RoleCode == rc));
+                    }
+                }
+
+                var areas = mRoles.SelectMany(x => x.MyAreas.Where(a => a.AreaCode == areaCode));
+                foreach (var myArea in areas)
+                {
+                    foreach (var function in myArea.MyFunctions)
+                    {
+                        if (myFunctions.Any(x => x.Id == function.Id)) continue;
+                        myFunctions.Add(function);
+                    }
+                }
+
+                return PartialView("TopNavbarMenu", myFunctions);
+            }
+
+
             var role = outputModel.Model.MyRoles.FirstOrDefault(x => x.RoleCode == roleCode);
-            //var saleRole = outputModel.Model.MyRoles.FirstOrDefault(x => x.RoleCode == Constants.SaleRoleCode);
-            //var saleArea = saleRole?.MyAreas.FirstOrDefault(x => x.AreaCode == areaCode);
-            //var areas = outputModel.Model.MyRoles.SelectMany(x => x.MyAreas);
-            // var functions = areas.SelectMany(x => x.MyFunctions);
-            //var childItems = functions.SelectMany(x => x.ChildItems);
-            //var functions = saleArea.MyFunctions.SelectMany(x => x.ChildItems);
+
             var area = role?.MyAreas.FirstOrDefault(x => x.AreaCode == areaCode);
-            //foreach (var function in functions)
-            //{
-            //    if (area.MyFunctions.Any(x => x.Id != function.Id))
-            //    {
-            //        area.MyFunctions.Add(function);
-            //    }
-            //}
+
             return PartialView("TopNavbarMenu", area?.MyFunctions);
         }
 

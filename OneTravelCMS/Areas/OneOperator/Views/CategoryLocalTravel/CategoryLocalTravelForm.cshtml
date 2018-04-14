@@ -8,7 +8,7 @@
     {
     <!-- Title -->
     <div class="row heading-bg">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <div class="col-lg-3  col-sm-4 col-xs-12">
             <h5 class="txt-dark">@ViewData["Title"]</h5>
         </div>
         <!-- Breadcrumb -->
@@ -24,7 +24,6 @@
     <!-- /Title -->
 
 }
-
 <div class="col-sm-12">
     <div class="panel panel-default card-view">
         <div class="panel-heading">
@@ -41,41 +40,51 @@
                         @Html.AntiForgeryToken()
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input asp-for="Id" type="hidden" />
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="LocalName"></label>
-                            <input asp-for="LocalName" type="text" class="form-control">
-                            <span asp-validation-for="LocalName" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="LocalCode"></label>
-                            <input asp-for="LocalCode" type="text" class="form-control">
-                            <span asp-validation-for="LocalCode" class="text-danger"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label asp-for="IdCity" class="control-label mb-10"></label>
-                            <select class="form-control" asp-for="IdCity" asp-items="Model.Cities"></select>
-                            <span asp-validation-for="IdCity" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="Description"></label>
-                            <textarea asp-for="Description" class="form-control"></textarea>
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="checkbox checkbox-success checkbox-inline">
-                                <input id="IsActive" asp-for="IsActive" type="checkbox">
-                                <label class="checkbox-inline" asp-for="IsActive"></label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="LocalCode"></label>
+                                    <input asp-for="LocalCode" type="text" class="form-control ">
+                                    <span asp-validation-for="LocalCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="LocalName"></label>
+                                    <input asp-for="LocalName" type="text" class="form-control ">
+                                    <span asp-validation-for="LocalName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="IdCity" class="control-label mb-10"></label>
+                                    <select class="form-control " asp-for="IdCity" asp-items="Model.Cities"></select>
+                                    <span asp-validation-for="IdCity" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="Description"></label>
+                                    <textarea asp-for="Description" class="form-control"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
 
-                        <div class="form-group mb-0">
-                            <button type="submit" name="saveCommand" value="@Constants.SaveContinute" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Tiếp tục</span></button>
-                            <button type="submit" name="saveCommand" value="@Constants.Save" class="btn btn-warning btn-anim"><i class="fa fa-sign-out"></i><span class="btn-text">Lưu và Thoát</span></button>
-                            <a asp-area="OneOperator" class="btn btn-danger" asp-controller="CategoryBooking" asp-action="Index">Hủy</a>
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-success checkbox-inline">
+                                        <input id="IsActive" asp-for="IsActive" type="checkbox">
+                                        <label class="checkbox-inline" asp-for="IsActive"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-0">
+                                    <button type="submit" name="saveCommand" value="@Constants.SaveAndCreate" class="btn btn-default btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Thêm mới</span></button>
+                                    <button type="submit" name="saveCommand" value="@Constants.SaveContinute" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Cập nhật</span></button>
+                                    <button type="submit" name="saveCommand" value="@Constants.Save" class="btn btn-warning btn-anim"><i class="fa fa-sign-out"></i><span class="btn-text">Lưu và Thoát</span></button>
+                                    <a asp-area="OneOperator" class="btn btn-danger" asp-controller="CategoryLocalTravel" asp-action="Index">Hủy</a>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

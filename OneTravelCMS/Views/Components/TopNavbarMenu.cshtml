@@ -7,7 +7,7 @@
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-        @if (User.IsInRole("admin"))
+        @if (User.IsInRole(Constants.AdminRoleCode))
         {
             <li class="li-area">
                 <a class="populate-menu"
@@ -22,7 +22,27 @@
                    href="javascript:void(0)">Báo cáo</a>
             </li>
         }
-        else
+        else if (User.IsInRole(Constants.SaleRoleCode) && User.IsInRole(Constants.AccountingRoleCode))
+        {
+            <li class="li-area">
+                <a class="populate-menu"
+                   data-area="@Constants.OneOperatorArea"
+                   data-role="@Constants.SaleRoleCode$@Constants.AccountingRoleCode"
+                   href="javascript:void(0)">Điều hành Tour</a>
+            </li>
+        }
+
+        else if (User.IsInRole(Constants.SaleRoleCode))
+        {
+            <li class="li-area">
+                <a class="populate-menu"
+                   data-area="@Constants.OneOperatorArea"
+                   data-role="@Constants.SaleRoleCode"
+                   href="javascript:void(0)">Điều hành Tour</a>
+            </li>
+        }
+
+        else if (User.IsInRole(Constants.AccountingRoleCode))
         {
             <li class="li-area">
                 <a class="populate-menu"
@@ -40,7 +60,7 @@
             const link = $(e.target);
             const areaCode = link.data("area");
             const roleCode = link.data("role");
-            
+
             $.ajax({
                 url: `/Home/PopulateTopNavbarData?areaCode=${areaCode}&roleCode=${roleCode}`,
                 type: "get",

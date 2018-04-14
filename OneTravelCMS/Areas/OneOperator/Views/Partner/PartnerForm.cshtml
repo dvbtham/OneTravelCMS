@@ -41,58 +41,77 @@
                         @Html.AntiForgeryToken()
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input asp-for="Id" type="hidden" />
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="PartnerName"></label>
-                            <input asp-for="PartnerName" type="text" class="form-control">
-                            <span asp-validation-for="PartnerName" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="TaxCode"></label>
+                                    <input asp-for="TaxCode" type="text" class="form-control">
+                                    <span asp-validation-for="TaxCode" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="IdGroupPartner"></label>
+                                    <select asp-for="IdGroupPartner" asp-items="@Model.PartnerGroups" class="form-control"></select>
+                                    <span asp-validation-for="IdGroupPartner" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="PartnerName"></label>
+                                    <input asp-for="PartnerName" type="text" class="form-control">
+                                    <span asp-validation-for="PartnerName" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="TaxCode"></label>
-                            <input asp-for="TaxCode" type="text" class="form-control">
-                            <span asp-validation-for="TaxCode" class="text-danger"></span>
-                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="Telephone"></label>
+                                    <input asp-for="Telephone" type="tel" class="form-control">
+                                    <span asp-validation-for="Telephone" class="text-danger"></span>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="IdGroupPartner"></label>
-                            <select asp-for="IdGroupPartner" asp-items="@Model.PartnerGroups" class="form-control"></select>
-                            <span asp-validation-for="IdGroupPartner" class="text-danger"></span>
-                        </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="Email"></label>
+                                    <input asp-for="Email" type="email" class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="Telephone"></label>
-                            <input asp-for="Telephone" type="tel" class="form-control">
-                            <span asp-validation-for="Telephone" class="text-danger"></span>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="Address"></label>
+                                    <input asp-for="Address" type="text" class="form-control">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="Email"></label>
-                            <input asp-for="Email" type="email" class="form-control">
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="Address"></label>
-                            <input asp-for="Address" type="text" class="form-control">
-                            <span asp-validation-for="Address" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="Website"></label>
-                            <input asp-for="Website" type="url" class="form-control">
-                            <span asp-validation-for="Website" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label mb-10" asp-for="Summary"></label>
-                            <textarea asp-for="Summary" rows="5" class="form-control"></textarea>
-                            <span asp-validation-for="Summary" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="checkbox checkbox-success checkbox-inline">
-                                <input id="IsActive" asp-for="IsActive" type="checkbox">
-                                <label class="checkbox-inline" asp-for="IsActive"></label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="Website"></label>
+                                    <input asp-for="Website" type="url" class="form-control">
+                                    <span asp-validation-for="Website" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-success checkbox-inline">
+                                        <input id="IsActive" asp-for="IsActive" type="checkbox">
+                                        <label class="checkbox-inline" asp-for="IsActive"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="Summary"></label>
+                                    <textarea asp-for="Summary" rows="5" class="form-control"></textarea>
+                                    <span asp-validation-for="Summary" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
 
@@ -127,15 +146,14 @@
                                                         <td class="mobile_@item.Id"><a href="tel:@item.Mobile">@item.Mobile</a></td>
                                                         <td class="email_@item.Id"><a href="mailto:@item.Email">@item.Email</a></td>
                                                         <td>
-                                                            <a class="table-edit" href="javascript:void(0)"
+                                                            <i class="fa fa-edit text-success"></i><a class="table-edit" href="javascript:void(0)"
                                                                data-partner="@item.IdPartner"
-                                                               data-id="@item.Id">
-                                                                <i class="fa fa-edit text-success"></i> Sửa
+                                                               data-id="@item.Id"> Sửa
                                                             </a>
-                                                            | <a class="table-delete" data-controller="PartnerContact"
+                                                            | <i class="fa fa-trash text-danger"></i> <a class="table-delete" data-controller="PartnerContact"
                                                                  href="javascript:void(0)"
                                                                  data-id="@item.Id">
-                                                                <i class="fa fa-trash text-danger"></i> Xóa
+                                                                 Xóa
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -148,7 +166,8 @@
                         }
 
                         <div class="form-group mb-0">
-                            <button type="submit" name="saveCommand" value="@Constants.SaveContinute" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Tiếp tục</span></button>
+                            <button type="submit" name="saveCommand" value="@Constants.SaveAndCreate" class="btn btn-default btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Thêm mới</span></button>
+                            <button type="submit" name="saveCommand" value="@Constants.SaveContinute" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Cập nhật</span></button>
                             <button type="submit" name="saveCommand" value="@Constants.Save" class="btn btn-warning btn-anim"><i class="fa fa-sign-out"></i><span class="btn-text">Lưu và Thoát</span></button>
                             <a asp-area="OneOperator" class="btn btn-danger" asp-controller="Partner" asp-action="Index">Hủy</a>
                         </div>

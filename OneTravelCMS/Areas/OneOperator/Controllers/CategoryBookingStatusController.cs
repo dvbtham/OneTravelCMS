@@ -49,7 +49,14 @@ namespace OneTravelCMS.Areas.OneOperator.Controllers
                 return View("CategoryBookingStatusForm", model);
             }
             AlertShow();
-            if (saveCommand != Constants.SaveContinute) return RedirectToAction("Index");
+
+            switch (saveCommand)
+            {
+                case Constants.Save:
+                    return RedirectToAction("Index");
+                case Constants.SaveAndCreate:
+                    return Redirect("/OneOperator/CategoryBookingStatus/Create");
+            }
 
             model = _mapper.Map(outmodel.Model, model);
             return RedirectToAction("Edit", new { id = model.Id });
@@ -84,7 +91,14 @@ namespace OneTravelCMS.Areas.OneOperator.Controllers
                 return View("CategoryBookingStatusForm", model);
             }
             AlertShow();
-            if (saveCommand != Constants.SaveContinute) return RedirectToAction("Index");
+
+            switch (saveCommand)
+            {
+                case Constants.Save:
+                    return RedirectToAction("Index");
+                case Constants.SaveAndCreate:
+                    return Redirect("/OneOperator/CategoryBookingStatus/Create");
+            }
 
             model = _mapper.Map(outmodel.Model, model);
             return RedirectToAction("Edit", new { id = model.Id });

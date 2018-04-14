@@ -39,14 +39,14 @@ namespace OneTravelApi.Services
                 PageSize = (int)pageSize,
                 PageNumber = (int)pageNumber
             };
-            var query = _cateBookingRepository.Query().Skip((response.PageNumber - 1) * response.PageSize)
+            var query = _cateBookingRepository.Query().OrderBy(x => x.Position).Skip((response.PageNumber - 1) * response.PageSize)
                 .Take(response.PageSize).ToList();
 
             if (!string.IsNullOrEmpty(q) && query.Any())
             {
                 q = q.ToLower();
-                query = query.Where(x => 
-                                    x.CityName.ToLower().Contains(q) || 
+                query = query.Where(x =>
+                                    x.CityName.ToLower().Contains(q) ||
                                     x.CityCode.ToLower().Contains(q)).ToList();
             }
 
@@ -68,7 +68,7 @@ namespace OneTravelApi.Services
 
         public async Task<IActionResult> GetAsync(int id)
         {
-            var response = new SingleModelResponse<CategoryCity>();
+            var response = new SingleModelResponse<CategoryCityResource>();
 
             try
             {
@@ -81,7 +81,7 @@ namespace OneTravelApi.Services
                     return response.ToHttpResponse();
                 }
 
-                var resource = new CategoryCity();
+                var resource = new CategoryCityResource();
                 _mapper.Map(entity, resource);
                 response.Model = resource;
             }

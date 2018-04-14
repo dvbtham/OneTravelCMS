@@ -29,8 +29,8 @@ namespace OneTravelCMS.Core.Extensions.TagHelpers
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var html = $@"<a href='{Url}' data-id='{DataId}' data-name='{DataName}'><i class='fa fa-edit text-success'></i> {EditLabel}</a> 
-            &nbsp;<a href = '#' data-id = '{DataId}' data-name = '{DataName}' data-controller='{Controller}' class='{DeleteClassName}'><i class='fa fa-trash text-danger'></i> {DeleteLabel}</a>";
+            var html = $@"<i class='fa fa-edit text-success'></i><a href='{Url}' data-id='{DataId}' data-name='{DataName}'> {EditLabel}</a> 
+            &nbsp;<i class='fa fa-trash text-danger'></i><a href = '#' data-id = '{DataId}' data-name = '{DataName}' data-controller='{Controller}' class='{DeleteClassName}'> {DeleteLabel}</a>";
             output.Content.SetHtmlContent(html);
         }
     }

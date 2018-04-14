@@ -22,14 +22,14 @@
                             <td class="positionTitle_${d.partnerContacts[i].id}">${d.partnerContacts[i].positionTitle}</td>
                             <td class="mobile_${d.partnerContacts[i].id}">${d.partnerContacts[i].mobile}</td>
                             <td class="email_${d.partnerContacts[i].id}">${d.partnerContacts[i].email}</td>
-                            <td>
+                            <td> <i class="fa fa-edit text-success"></i>
                                 <a class="table-edit" href="javascript:void(0)"
                                     data-partner="${d.id}"
                                     data-id="${d.partnerContacts[i].id}">
-                                    <i class="fa fa-edit text-success"></i> Sửa</a>
-                                    | <a class="table-delete" href="javascript:void(0)"
+                                     Sửa</a>
+                                    |  <i class="fa fa-trash text-danger"></i> <a class="table-delete" href="javascript:void(0)"
                                         data-id="${d.partnerContacts[i].id}">
-                                    <i class="fa fa-trash text-danger"></i> Xóa</a>
+                                    Xóa</a>
                             </td>
                        </tr>`;
         }
