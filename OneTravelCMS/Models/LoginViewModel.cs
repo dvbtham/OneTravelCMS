@@ -63,6 +63,7 @@ namespace OneTravelCMS.Models
         public string Url { get; set; }
         public bool IsRead { get; set; }
         public bool IsWrite { get; set; }
+        public int Parent { get; set; }
 
         public IList<FunctionWithRole> ChildItems { get; set; } = new List<FunctionWithRole>();
 

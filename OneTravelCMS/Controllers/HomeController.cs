@@ -21,7 +21,6 @@ namespace OneTravelCMS.Controllers
 
         public async Task<IActionResult> PopulateTopNavbarData(string areaCode, string roleCode)
         {
-            // var model = JsonConvert.DeserializeObject<TopNavbarMenuFormViewModel>(json);
             var email = User.Identity.Name;
             var response = await HttpRequestFactory.Get(Constants.BaseAdminApiUrl + "user/areas/" + email);
             var outputModel = response.ContentAsType<SingleModelResponse<UserEx>>();
@@ -31,7 +30,7 @@ namespace OneTravelCMS.Controllers
                 var roleCodes = roleCode.Split("$");
                 var mRoles = new List<MyRole>();
                 var myFunctions = new List<FunctionWithRole>();
-
+                var childs = new List<FunctionWithRole>();
                 foreach (var rc in roleCodes)
                 {
                     if (!string.IsNullOrEmpty(rc))
@@ -41,13 +40,26 @@ namespace OneTravelCMS.Controllers
                 }
 
                 var areas = mRoles.SelectMany(x => x.MyAreas.Where(a => a.AreaCode == areaCode));
+
                 foreach (var myArea in areas)
                 {
                     foreach (var function in myArea.MyFunctions)
                     {
+                        foreach (var childItem in function.ChildItems)
+                        {
+                            if (childs.Any(x => x.Id == childItem.Id)) continue;
+
+                            childs.Add(childItem);
+                        }
+
                         if (myFunctions.Any(x => x.Id == function.Id)) continue;
                         myFunctions.Add(function);
                     }
+                }
+
+                foreach (var myFunction in myFunctions)
+                {
+                    myFunction.ChildItems = childs.Where(x => x.Parent == myFunction.Id).ToList();
                 }
 
                 return PartialView("TopNavbarMenu", myFunctions);

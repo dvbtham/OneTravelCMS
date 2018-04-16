@@ -1,5 +1,21 @@
-﻿@using OneTravelCMS.Core
-
+﻿@using System.Security.Claims
+@using OneTravelCMS.Core
+@{
+    var roles = User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).ToList();
+    var roleString = "";
+    var last = roles.Last();
+    foreach (var role in roles)
+    {
+        if (!role.Equals(last))
+        {
+            roleString += role + "$";
+        }
+        else
+        {
+            roleString += role;
+        }
+    }
+}
 <li class="dropdown">
     <!-- Single button -->
     <button class="btn btn-primary dropdown-toggle" style="margin-top: 14px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -12,42 +28,22 @@
             <li class="li-area">
                 <a class="populate-menu"
                    data-area="@Constants.OneOperatorArea"
-                   data-role="@Constants.AdminRoleCode"
+                   data-role="@roleString"
                    href="javascript:void(0)">Điều hành Tour</a>
             </li>
             <li class="li-area">
                 <a class="populate-menu"
                    data-area="@Constants.OneReportArea"
-                   data-role="@Constants.AdminRoleCode"
+                   data-role="@roleString"
                    href="javascript:void(0)">Báo cáo</a>
             </li>
         }
-        else if (User.IsInRole(Constants.SaleRoleCode) && User.IsInRole(Constants.AccountingRoleCode))
+        else 
         {
             <li class="li-area">
                 <a class="populate-menu"
                    data-area="@Constants.OneOperatorArea"
-                   data-role="@Constants.SaleRoleCode$@Constants.AccountingRoleCode"
-                   href="javascript:void(0)">Điều hành Tour</a>
-            </li>
-        }
-
-        else if (User.IsInRole(Constants.SaleRoleCode))
-        {
-            <li class="li-area">
-                <a class="populate-menu"
-                   data-area="@Constants.OneOperatorArea"
-                   data-role="@Constants.SaleRoleCode"
-                   href="javascript:void(0)">Điều hành Tour</a>
-            </li>
-        }
-
-        else if (User.IsInRole(Constants.AccountingRoleCode))
-        {
-            <li class="li-area">
-                <a class="populate-menu"
-                   data-area="@Constants.OneOperatorArea"
-                   data-role="@Constants.AccountingRoleCode"
+                   data-role="@roleString"
                    href="javascript:void(0)">Điều hành Tour</a>
             </li>
         }

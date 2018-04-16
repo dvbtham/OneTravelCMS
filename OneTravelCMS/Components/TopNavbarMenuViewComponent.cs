@@ -9,14 +9,9 @@ namespace OneTravelCMS.Components
 {
     public class TopNavbarMenuViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            var email = User.Identity.Name;
-            var response = await HttpRequestFactory.Get(Constants.BaseAdminApiUrl + "user/areas/"+ email);
-            var outputModel = response.ContentAsType<SingleModelResponse<UserEx>>();
-            var roles = outputModel.Model.MyRoles;
-            
-            return View("/Views/Components/TopNavbarMenu.cshtml", roles);
+            return View("/Views/Components/TopNavbarMenu.cshtml");
         }
     }
 }
