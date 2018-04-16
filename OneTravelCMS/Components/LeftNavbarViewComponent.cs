@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OneTravelCMS.Core;
-using OneTravelCMS.Core.Extensions.HttpClient;
 using OneTravelCMS.Models;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using OneTravelApi.Responses;
 
 namespace OneTravelCMS.Components
 {
@@ -12,15 +11,15 @@ namespace OneTravelCMS.Components
     {
         public async Task<IViewComponentResult> InvokeAsync(string areaCode)
         {
-            // var model = JsonConvert.DeserializeObject<TopNavbarMenuFormViewModel>(json);
+            if(!User.Identity.IsAuthenticated) return View("/Views/Components/LeftNavbar.cshtml", new List<FunctionWithRole>());
+
             var email = User.Identity.Name;
-            var response = await HttpRequestFactory.Get(Constants.BaseAdminApiUrl + "user/areas/" + email);
-            var outputModel = response.ContentAsType<SingleModelResponse<UserEx>>();
-            var role = outputModel.Model.MyRoles.FirstOrDefault(x => x.RoleCode == Constants.AdminRoleCode);
-           
-            var area = role?.MyAreas.FirstOrDefault(x => x.AreaCode == areaCode);
-           
-            return View("/Views/Components/LeftNavbar.cshtml", area?.MyFunctions);
+            var roleCodes = UserClaimsPrincipal.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value).ToList();
+            var myFunctions = await new FunctionHelper().BuildLeftMenu(roleCodes, areaCode, email);
+
+            return View("/Views/Components/LeftNavbar.cshtml", myFunctions);
         }
+
+        
     }
 }

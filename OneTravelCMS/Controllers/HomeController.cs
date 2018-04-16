@@ -28,39 +28,8 @@ namespace OneTravelCMS.Controllers
             if (roleCode.Contains("$"))
             {
                 var roleCodes = roleCode.Split("$");
-                var mRoles = new List<MyRole>();
-                var myFunctions = new List<FunctionWithRole>();
-                var childs = new List<FunctionWithRole>();
-                foreach (var rc in roleCodes)
-                {
-                    if (!string.IsNullOrEmpty(rc))
-                    {
-                        mRoles.Add(outputModel.Model.MyRoles.FirstOrDefault(x => x.RoleCode == rc));
-                    }
-                }
-
-                var areas = mRoles.SelectMany(x => x.MyAreas.Where(a => a.AreaCode == areaCode));
-
-                foreach (var myArea in areas)
-                {
-                    foreach (var function in myArea.MyFunctions)
-                    {
-                        foreach (var childItem in function.ChildItems)
-                        {
-                            if (childs.Any(x => x.Id == childItem.Id)) continue;
-
-                            childs.Add(childItem);
-                        }
-
-                        if (myFunctions.Any(x => x.Id == function.Id)) continue;
-                        myFunctions.Add(function);
-                    }
-                }
-
-                foreach (var myFunction in myFunctions)
-                {
-                    myFunction.ChildItems = childs.Where(x => x.Parent == myFunction.Id).ToList();
-                }
+                
+                var myFunctions = await new FunctionHelper().BuildLeftMenu(roleCodes, areaCode, email);
 
                 return PartialView("TopNavbarMenu", myFunctions);
             }
