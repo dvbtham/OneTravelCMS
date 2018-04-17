@@ -16,5 +16,8 @@
         public const string StringLengthMaxMessage = "{0} chỉ nhập tối đa {1} ký tự.";
         public const string RequiredMessage = "Vui lòng nhập {0}.";
 
+        public const string SaveContinuteMsg = "Lưu";
+        public const string SaveAndCreateMsg = "Lưu và thêm mới";
+
     }
 }

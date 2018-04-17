@@ -1,7 +1,7 @@
 ﻿@using OneTravelCMS.Core
-@model OneTravelCMS.Areas.OneOperator.Models.CategoryBookingViewModel
+@model OneTravelCMS.Areas.OneOperator.Models.CategoryPriceViewModel
 @{
-    ViewData["Title"] = "Nhóm Booking";
+    ViewData["Title"] = "Loại giá";
 }
 
 @section PageTitle
@@ -15,7 +15,7 @@
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
-                <li><a asp-area="OneOperator" asp-controller="CategoryBooking" asp-action="Index"><span>@ViewData["Title"]</span></a></li>
+                <li><a asp-area="OneOperator" asp-controller="CategoryPrice" asp-action="Index"><span>@ViewData["Title"]</span></a></li>
                 <li class="active"><span>@(Model.Action.ToLower() == "Update".ToLower() ? "Cập nhật" : "Thêm mới")</span></li>
             </ol>
         </div>
@@ -30,26 +30,26 @@
         <div class="panel-heading">
             <error msg="@ViewBag.ErrorMsg"></error>
             <div class="pull-left">
-                <h6 class="panel-title txt-dark">Thông tin nhóm Booking</h6>
+                <h6 class="panel-title txt-dark">Thông tin </h6>
             </div>
             <div class="clearfix"></div>
         </div>
         <div class="panel-wrapper collapse in">
             <div class="panel-body">
                 <div class="form-wrap">
-                    <form action="/OneOperator/CategoryBooking/@Model.Action" data-val="@Model.Action" method="post" id="form">
+                    <form action="/OneOperator/CategoryPrice/@Model.Action" data-val="@Model.Action" method="post" id="form">
                         @Html.AntiForgeryToken()
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input asp-for="Id" type="hidden" />
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label class="control-label mb-10" asp-for="BookingName"></label>
-                                    <input asp-for="BookingName" type="text" class="form-control">
-                                    <span asp-validation-for="BookingName" class="text-danger"></span>
+                                    <label class="control-label mb-10" asp-for="CategoryPriceName"></label>
+                                    <input asp-for="CategoryPriceName" type="text" class="form-control">
+                                    <span asp-validation-for="CategoryPriceName" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="control-label mb-10" asp-for="Position"></label>
                                     <input asp-for="Position" type="number" class="form-control">
@@ -68,7 +68,7 @@
                         <div class="form-group mb-0">
                             <button type="submit" name="saveCommand" value="@Constants.Save" class="btn btn-primary btn-anim"><i class="fa fa-save"></i><span class="btn-text">@Constants.SaveContinuteMsg</span></button>
                             <button type="submit" name="saveCommand" value="@Constants.SaveAndCreate" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">@Constants.SaveAndCreateMsg</span></button>
-                            <a asp-area="OneOperator" class="btn btn-danger" asp-controller="CategoryRequest" asp-action="Index">Hủy</a>
+                            <a asp-area="OneOperator" class="btn btn-danger" asp-controller="CategoryPrice" asp-action="Index">Hủy</a>
                         </div>
                     </form>
                 </div>

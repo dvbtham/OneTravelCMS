@@ -78,9 +78,8 @@
                         </div>
 
                         <div class="form-group mb-0">
-                            <button type="submit" name="saveCommand" value="@Constants.SaveAndCreate" class="btn btn-default btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Thêm mới</span></button>
-                            <button type="submit" name="saveCommand" value="@Constants.SaveContinute" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">Lưu và Cập nhật</span></button>
-                            <button type="submit" name="saveCommand" value="@Constants.Save" class="btn btn-warning btn-anim"><i class="fa fa-sign-out"></i><span class="btn-text">Lưu và Thoát</span></button>
+                            <button type="submit" name="saveCommand" value="@Constants.Save" class="btn btn-primary btn-anim"><i class="fa fa-save"></i><span class="btn-text">@Constants.SaveContinuteMsg</span></button>
+                            <button type="submit" name="saveCommand" value="@Constants.SaveAndCreate" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">@Constants.SaveAndCreateMsg</span></button>
                             <a asp-area="OneOperator" class="btn btn-danger" asp-controller="CategoryGroupPartner" asp-action="Index">Hủy</a>
                         </div>
                     </form>

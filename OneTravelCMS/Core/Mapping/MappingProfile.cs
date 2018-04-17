@@ -35,6 +35,12 @@ namespace OneTravelCMS.Core.Mapping
 
             CreateMap<CategoryRequestStatus, CategoryRequestStatusViewModel>();
             CreateMap<CategoryRequestStatusViewModel, CategoryRequestStatus>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<CategoryPriceResource, CategoryPriceViewModel>();
+            CreateMap<CategoryPriceViewModel, CategoryPriceResource>();
+
+            CreateMap<TravelPriceResource, TravelPriceViewModel>();
+            CreateMap<TravelPriceViewModel, TravelPriceSaveResource>();
         }
     }
 }

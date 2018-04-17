@@ -1,6 +1,7 @@
 ﻿$(function() {
     alertShow();
     stickyPanel();
+    datetimePicker();
 });
 
 function alertShow() {
@@ -17,6 +18,34 @@ function alertShow() {
             hideAfter: 3500
         });
     }
+}
+
+function datetimePicker() {
+
+    $('.input-daterange-datepicker').daterangepicker({
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-primary',
+        cancelClass: 'btn-danger',
+        locale: {
+            applyLabel: "Áp dụng",
+            cancelLabel: "Hủy",
+            format: 'DD/MM/YYYY'
+        }
+    });
+    $("#datetimepicker").datetimepicker({
+        format: "DD/MM/YYYY",
+        useCurrent: true,
+        ignoreReadonly: true,
+        icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down"
+        }
+    }).on("dp.show", function () {
+        if ($(this).data("DateTimePicker").date() === null)
+            $(this).data("DateTimePicker").date(moment());
+    });
 }
 
 function stickyPanel() {

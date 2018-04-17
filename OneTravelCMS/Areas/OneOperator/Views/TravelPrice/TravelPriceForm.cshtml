@@ -1,0 +1,128 @@
+﻿@using OneTravelCMS.Core
+@model OneTravelCMS.Areas.OneOperator.Models.TravelPriceViewModel
+@{
+    ViewData["Title"] = "Quản lý bảng giá";
+}
+
+@section PageTitle
+    {
+    <!-- Title -->
+    <div class="row heading-bg">
+        <div class="col-lg-3  col-sm-4 col-xs-12">
+            <h5 class="txt-dark">@ViewData["Title"]</h5>
+        </div>
+        <!-- Breadcrumb -->
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li><a asp-area="OneOperator" asp-controller="TravelPrice" asp-action="Index"><span>@ViewData["Title"]</span></a></li>
+                <li class="active"><span>@(Model.Action.ToLower() == "Update".ToLower() ? "Cập nhật" : "Thêm mới")</span></li>
+            </ol>
+        </div>
+        <!-- /Breadcrumb -->
+    </div>
+    <!-- /Title -->
+
+}
+<div class="col-sm-12">
+    <div class="panel panel-default card-view">
+        <div class="panel-heading">
+            <error msg="@ViewBag.ErrorMsg"></error>
+            <div class="pull-left">
+                <h6 class="panel-title txt-dark">Thông tin bảng giá</h6>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+            <div class="panel-body">
+                <div class="form-wrap">
+                    <form action="/OneOperator/TravelPrice/@Model.Action" data-val="@Model.Action" method="post" id="form">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="Id" type="hidden" />
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="PriceName"></label>
+                                    <input autofocus asp-for="PriceName" type="text" class="form-control ">
+                                    <span asp-validation-for="PriceName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="IdCategoryLocalTravel" class="control-label mb-10"></label>
+                                    <select class="form-control select2" asp-for="IdCategoryLocalTravel" asp-items="Model.Locals">
+                                        <option value="0">-- Chọn địa điểm --</option>
+                                    </select>
+                                    <span asp-validation-for="IdCategoryLocalTravel" class="text-danger"></span>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="Price"></label>
+                                    <input asp-for="Price" type="number" class="form-control ">
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="IdCategoryPrice" class="control-label mb-10"></label>
+                                    <select class="form-control " asp-for="IdCategoryPrice" asp-items="Model.CategoryPrices"></select>
+                                    <span asp-validation-for="IdCategoryPrice" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="UpdateDate" class="control-label mb-10"></label>
+                                    <div class="input-group date" id="datetimepicker">
+
+                                        <input type="text" onkeydown="return false" asp-for="UpdateDate" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label mb-10" asp-for="ContactInfo"></label>
+                                    <textarea asp-for="ContactInfo" rows="6" class="form-control"></textarea>
+                                    <span asp-validation-for="ContactInfo" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-success checkbox-inline">
+                                        <input id="IsActive" asp-for="IsActive" type="checkbox">
+                                        <label class="checkbox-inline" asp-for="IsActive"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-0">
+                                    <button type="submit" name="saveCommand" value="@Constants.Save" class="btn btn-primary btn-anim"><i class="fa fa-save"></i><span class="btn-text">@Constants.SaveContinuteMsg</span></button>
+                                    <button type="submit" name="saveCommand" value="@Constants.SaveAndCreate" class="btn btn-success btn-anim"><i class="fa fa-check"></i><span class="btn-text">@Constants.SaveAndCreateMsg</span></button>
+                                    <a asp-area="OneOperator" class="btn btn-danger" asp-controller="TravelPrice" asp-action="Index">Hủy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(".select2").select2();
+    </script>
+}

@@ -47,7 +47,7 @@ namespace OneTravelApi.Services
                         UserIdentifer = user.UserIdentifier
                     };
 
-                    await _userRepository.UpdateAsync(userToAdd);
+                    await _userRepository.AddAsync(userToAdd);
                 }
 
                 return true;

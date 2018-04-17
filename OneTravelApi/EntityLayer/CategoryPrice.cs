@@ -2,18 +2,14 @@
 
 namespace OneTravelApi.EntityLayer
 {
-    public class CategoryLocalTravel
+    public class CategoryPrice : IActivable
     {
         public int Id { get; set; }
-        public int IdCity { get; set; }
-        public CategoryCity City { get; set; }
 
-        public string LocalCode { get; set; }
-        public string LocalName { get; set; }
-
-        public string Description { get; set; }
+        public string CategoryPriceName { get; set; }
 
         public bool IsActive { get; set; }
+        public int Position { get; set; }
 
         public IEnumerable<TravelPrice> TravelPrices { get; set; } = new List<TravelPrice>();
     }
