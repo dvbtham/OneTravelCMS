@@ -69,6 +69,7 @@ namespace OneTravelApi
             services.AddScoped<IPartnerContactService, PartnerContactService>();
             services.AddScoped<ICategoryPriceService, CategoryPriceService>();
             services.AddScoped<ITravelPriceService, TravelPriceService>();
+            services.AddScoped<ITravelRequestService, TravelRequestService>();
 
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddSingleton(Configuration);

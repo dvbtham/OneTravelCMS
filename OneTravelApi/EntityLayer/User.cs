@@ -20,5 +20,6 @@ namespace OneTravelApi.EntityLayer
         public IEnumerable<Partner> Partners { get; set; } = new HashSet<Partner>();
         public IEnumerable<PartnerContact> PartnerContacts { get; set; } = new HashSet<PartnerContact>();
         public IEnumerable<TravelPrice> TravelPrices { get; set; } = new HashSet<TravelPrice>();
+        public IEnumerable<TravelRequest> TravelRequests { get; set; } = new List<TravelRequest>();
     }
 }

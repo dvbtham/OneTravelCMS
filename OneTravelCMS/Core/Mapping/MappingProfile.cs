@@ -41,6 +41,9 @@ namespace OneTravelCMS.Core.Mapping
 
             CreateMap<TravelPriceResource, TravelPriceViewModel>();
             CreateMap<TravelPriceViewModel, TravelPriceSaveResource>();
+
+            CreateMap<TravelRequestResource, TravelRequestViewModel>();
+            CreateMap<TravelRequestViewModel, TravelRequestSaveResource>();
         }
     }
 }

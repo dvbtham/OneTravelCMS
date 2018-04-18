@@ -21,7 +21,8 @@ namespace OneTravelApi.DataLayer
                 new PartnerMap(),
                 new UserMap(),
                 new CategoryPriceMap(),
-                new TravelPriceMap()
+                new TravelPriceMap(),
+                new TravelRequestMap()
             };
         }
     }

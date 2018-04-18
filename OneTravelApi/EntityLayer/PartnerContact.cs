@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OneTravelApi.EntityLayer
 {
@@ -25,5 +26,7 @@ namespace OneTravelApi.EntityLayer
         public User User { get; set; }
 
         public bool IsActive { get; set; }
+
+        public IEnumerable<TravelRequest> TravelRequests { get; set; } = new List<TravelRequest>();
     }
 }

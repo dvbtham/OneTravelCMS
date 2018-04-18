@@ -2,6 +2,9 @@
     alertShow();
     stickyPanel();
     datetimePicker();
+    $(".select2").select2({
+        "language": "vi-VN"
+    });
 });
 
 function alertShow() {

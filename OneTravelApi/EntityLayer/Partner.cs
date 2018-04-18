@@ -31,6 +31,8 @@ namespace OneTravelApi.EntityLayer
 
         public bool IsActive { get; set; }
 
+        public IEnumerable<TravelRequest> TravelRequests { get; set; } = new List<TravelRequest>();
+
         public IEnumerable<PartnerContact> PartnerContacts { get; set; } = new List<PartnerContact>();
     }
 }

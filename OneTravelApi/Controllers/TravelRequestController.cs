@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace OneTravelApi.Controllers
 {
-    public class PartnerContactController : BaseController
+    public class TravelRequestController : BaseController
     {
-        private readonly IPartnerContactService _service;
+        private readonly ITravelRequestService _service;
 
-        public PartnerContactController(IPartnerContactService service)
+        public TravelRequestController(ITravelRequestService service)
         {
             _service = service;
         }
@@ -26,20 +26,14 @@ namespace OneTravelApi.Controllers
             return await _service.GetAsync(id);
         }
 
-        [HttpGet("partner/{partnerId}")]
-        public IActionResult GetByPartner(int partnerId)
-        {
-            return _service.GetByPartner(partnerId);
-        }
-
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody]PartnerContactResource resource)
+        public async Task<IActionResult> Update(int id, [FromBody]TravelRequestSaveResource resource)
         {
             return await _service.Update(id, resource);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]PartnerContactResource resource)
+        public async Task<IActionResult> Create([FromBody]TravelRequestSaveResource resource)
         {
             return await _service.Create(resource);
         }

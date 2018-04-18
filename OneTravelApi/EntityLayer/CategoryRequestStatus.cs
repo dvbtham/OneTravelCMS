@@ -1,4 +1,6 @@
-﻿namespace OneTravelApi.EntityLayer
+﻿using System.Collections.Generic;
+
+namespace OneTravelApi.EntityLayer
 {
     public class CategoryRequestStatus : IActivable
     {
@@ -7,5 +9,7 @@
         public string RequestStatusName { get; set; }
         public bool IsActive { get; set; }
         public int Position { get; set; }
+
+        public IEnumerable<TravelRequest> TravelRequests { get; set; } = new List<TravelRequest>();
     }
 }

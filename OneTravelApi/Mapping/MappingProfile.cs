@@ -66,6 +66,56 @@ namespace OneTravelApi.Mapping
 
             #endregion
 
+            #region TravelRequest
+
+            CreateMap<TravelRequestSaveResource, TravelRequest>().ForMember(x => x.Id, opt => opt.Ignore());
+            CreateMap<TravelRequest, TravelRequestResource>()
+                .ForMember(x => x.CategoryRequest,
+                    opt => opt.MapFrom(x =>
+                        new KeyValuePairResource
+                        {
+                            Id = x.CategoryRequest.Id,
+                            Name = x.CategoryRequest.RequestName
+                        }))
+                .ForMember(x => x.CategoryRequestStatus,
+                    opt => opt.MapFrom(x =>
+                        new KeyValuePairResource
+                        {
+                            Id = x.CategoryRequestStatus.Id,
+                            Name = x.CategoryRequestStatus.RequestStatusName
+                        }))
+                .ForMember(x => x.Partner,
+                    opt => opt.MapFrom(x =>
+                        new KeyValuePairResource
+                        {
+                            Id = x.Partner.Id,
+                            Name = x.Partner.PartnerName
+                        }))
+                .ForMember(x => x.PartnerContact,
+                    opt => opt.MapFrom(x =>
+                        new KeyValuePairResource
+                        {
+                            Id = x.PartnerContact.Id,
+                            Name = x.PartnerContact.ContactName
+                        }))
+                .ForMember(x => x.User,
+                    opt => opt.MapFrom(x =>
+                        new KeyValuePairResource
+                        {
+                            Id = x.User.Id,
+                            Name = x.User.FullName
+                        }));
+
+            CreateMap<TravelPriceSaveResource, TravelPrice>()
+                .ForMember(x => x.Id, opt => opt.Ignore())
+                .AfterMap((resource, entity) =>
+                {
+                    if (resource.IdCategoryLocalTravel == 0) entity.IdCategoryLocalTravel = null;
+                });
+
+            #endregion
+
+            #region Partner
 
             CreateMap<Partner, PartnerResource>();
             CreateMap<PartnerResource, Partner>()
@@ -74,6 +124,9 @@ namespace OneTravelApi.Mapping
 
             CreateMap<PartnerContact, PartnerContactResource>();
             CreateMap<PartnerContactResource, PartnerContact>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            #endregion
+
         }
     }
 }
